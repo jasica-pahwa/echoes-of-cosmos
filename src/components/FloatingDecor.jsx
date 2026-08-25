@@ -26,3 +26,4 @@ export default function FloatingDecor() {
         </div>
       ))}
     </div>
+  );}

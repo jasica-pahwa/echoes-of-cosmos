@@ -1,116 +1,33 @@
-const facts = [
-  {
-    id: 1,
-    catalog: 'NGC-001',
-    category: 'Stars',
-    text: 'A single neutron star is so dense that a teaspoon of its material would weigh about as much as a mountain here on Earth.',
-    wow: true,
-  },
-  {
-    id: 2,
-    catalog: 'NGC-002',
-    category: 'Planets',
-    text: 'Venus spins so slowly that one day there lasts longer than one year on Venus.',
-    wow: true,
-  },
-  {
-    id: 3,
-    catalog: 'NGC-003',
-    category: 'Black Holes',
-    text: 'Time itself slows down near a black hole — an astronaut hovering close enough could age years while decades pass for everyone far away.',
-    wow: true,
-  },
-  {
-    id: 4,
-    catalog: 'NGC-004',
-    category: 'Cosmos',
-    text: 'The light you see from the Andromeda galaxy tonight left its stars roughly 2.5 million years ago, long before modern humans existed.',
-    wow: true,
-  },
-  {
-    id: 5,
-    catalog: 'NGC-005',
-    category: 'Planets',
-    text: 'Saturn is so much less dense than water that, in theory, it would float if you found an ocean large enough to hold it.',
-    wow: true,
-  },
-  {
-    id: 6,
-    catalog: 'NGC-006',
-    category: 'Space Travel',
-    text: 'Astronauts on the International Space Station watch roughly sixteen sunrises and sunsets every single day.',
-    wow: false,
-  },
-  {
-    id: 7,
-    catalog: 'NGC-007',
-    category: 'Stars',
-    text: 'Most of the atoms in your body, aside from hydrogen, were forged inside the cores of stars that died before the Sun was born.',
-    wow: true,
-  },
-  {
-    id: 8,
-    catalog: 'NGC-008',
-    category: 'Cosmos',
-    text: 'Space is not completely silent — gas and dust ripple through it, but with no air to carry sound the way it does on Earth, there is nothing for our ears to catch.',
-    wow: false,
-  },
-  {
-    id: 9,
-    catalog: 'NGC-009',
-    category: 'Planets',
-    text: 'Mars is home to Olympus Mons, a volcano roughly three times the height of Mount Everest.',
-    wow: true,
-  },
-  {
-    id: 10,
-    catalog: 'NGC-010',
-    category: 'Space Travel',
-    text: 'The fastest human-made object, the Parker Solar Probe, moves quickly enough to cross the distance from New York to Los Angeles in well under a minute.',
-    wow: true,
-  },
-  {
-    id: 11,
-    catalog: 'NGC-011',
-    category: 'Cosmos',
-    text: 'There are more estimated stars in the observable universe than grains of sand on every beach on Earth combined.',
-    wow: true,
-  },
-  {
-    id: 12,
-    catalog: 'NGC-012',
-    category: 'Stars',
-    text: 'Our Sun is considered an average-sized star, yet more than a million Earths could fit inside it.',
-    wow: false,
-  },
-  {
-    id: 13,
-    catalog: 'NGC-013',
-    category: 'Planets',
-    text: 'Uranus rotates almost completely on its side, likely the result of an ancient, enormous collision.',
-    wow: false,
-  },
-  {
-    id: 14,
-    catalog: 'NGC-014',
-    category: 'Black Holes',
-    text: 'The supermassive black hole at the center of the Milky Way, Sagittarius A*, has a mass equivalent to roughly four million Suns.',
-    wow: true,
-  },
-  {
-    id: 15,
-    catalog: 'NGC-015',
-    category: 'Space Travel',
-    text: 'Footprints left on the Moon by Apollo astronauts could remain visible for millions of years, since there is no wind or water to erode them.',
-    wow: true,
-  },
-  {
-    id: 16,
-    catalog: 'NGC-016',
-    category: 'Cosmos',
-    text: 'Every meteor shower comes from debris left behind by a comet or asteroid as Earth passes through the trail of dust it shed.',
-    wow: false,
-  },
-]
+const colors = {
+  yellow: 'var(--note-yellow)',
+  pink: 'var(--note-pink)',
+  blue: 'var(--note-blue)',
+  green: 'var(--note-green)',
+}
 
-export default facts
+// A tiny rotated "post-it" with handwritten font - used to sprinkle
+// friendly, kid-facing asides around the site ("Whoa, really?!", "Click
+// me!"). Pure CSS positioning + a pop-in keyframe, no libraries.
+export default function StickyNote({
+  text,
+  color = 'yellow',
+  rotate = -6,
+  delay = 2,
+  style = {},
+}) {
+  return (
+    <div
+      className="sticky-note"
+      style={{
+        position: 'absolute',
+        background: colors[color] || color,
+        maxWidth: 150,
+        '--note-rot': `${rotate}deg`,
+        '--note-delay': `${delay}ms`,
+        ...style,
+      }}
+    >
+      {text}
+    </div>
+  )
+}

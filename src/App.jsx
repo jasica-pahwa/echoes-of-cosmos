@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Trivia from './pages/Trivia.jsx'
+import './App.css'
 
 export default function App() {
   return (
