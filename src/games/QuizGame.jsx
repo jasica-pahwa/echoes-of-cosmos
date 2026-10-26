@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import quizQuestions from '../data/quizQuestions.js'
+import quizQuestions from '../data/Quiz.js'
 
 const confettiColors = ['var(--meteor)', 'var(--nebula)', 'var(--ion)', 'var(--comet)', 'var(--grass)']
 
