@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle.jsx'
 
+
 const linkStyle = ({ isActive }) => ({
   fontWeight: 700,
   fontSize: '15px',
@@ -36,6 +37,7 @@ export default function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
           <NavLink to="/" style={linkStyle} end>Home</NavLink>
           <NavLink to="/trivia" style={linkStyle}>Trivia</NavLink>
+          <NavLink to="/planets" style={linkStyle}>Planets Exploration</NavLink>
           <ThemeToggle />
         </div>
       </nav>

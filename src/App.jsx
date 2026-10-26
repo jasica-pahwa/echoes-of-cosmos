@@ -3,6 +3,9 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Trivia from './pages/Trivia.jsx'
+import './App.css'
+import PlanetExplorer from './pages/PlanetExplorer.jsx'
+import PlanetDetails from './pages/PlanetDetails.jsx'
 
 export default function App() {
   return (
@@ -11,6 +14,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/trivia" element={<Trivia />} />
+        <Route path="/planets" element={<PlanetExplorer />} />
+        <Route path="/planets/:planetName" element={<PlanetDetails />} />
       </Routes>
       <Footer />
     </div>
