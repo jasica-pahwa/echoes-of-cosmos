@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle.jsx'
 
-
 const linkStyle = ({ isActive }) => ({
   fontWeight: 700,
   fontSize: '15px',
@@ -44,3 +43,6 @@ export default function Navbar() {
     </header>
   )
 }
+
+
+
