@@ -31,11 +31,11 @@ export default function Navbar() {
           height: 68,
         }}
       >
-        <NavLink to="/" style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700 }}>
+        <NavLink to="/home" style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700 }}>
           🪐 Echoes of Cosmos
         </NavLink>
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <NavLink to="/" style={linkStyle} end>Home</NavLink>
+          <NavLink to="/home" style={linkStyle} end>Home</NavLink>
           <NavLink to="/trivia" style={linkStyle}>Trivia</NavLink>
           <NavLink to="/planets" style={linkStyle}>Planets Exploration</NavLink>
           <NavLink to="/login" style={linkStyle}>Login</NavLink>
@@ -48,6 +48,7 @@ export default function Navbar() {
     </header>
   )
 }
+
 
 
 

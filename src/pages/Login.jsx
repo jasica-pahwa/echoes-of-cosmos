@@ -37,7 +37,7 @@ function Login() {
     login(email.trim(), password)
       .then((result) => {
         if (result.success) {
-          navigate('/')
+          navigate('/home')
         }
       })
       .catch(() => {
@@ -145,3 +145,4 @@ function Login() {
 }
 
 export default Login
+
