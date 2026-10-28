@@ -38,6 +38,7 @@ export default function Navbar() {
           <NavLink to="/" style={linkStyle} end>Home</NavLink>
           <NavLink to="/trivia" style={linkStyle}>Trivia</NavLink>
           <NavLink to="/planets" style={linkStyle}>Planets Exploration</NavLink>
+          <NavLink to="/login" style={linkStyle}>Login</NavLink>
           <NavLink to="/build-rocket" style={linkStyle}>
   Build a Rocket
 </NavLink>
@@ -47,6 +48,7 @@ export default function Navbar() {
     </header>
   )
 }
+
 
 
 

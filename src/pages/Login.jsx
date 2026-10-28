@@ -135,9 +135,6 @@ function Login() {
           <span />
         </div>
 
-        <p className="login-signup">
-          New explorer? <Link to="/signup">Create an account</Link>
-        </p>
       </section>
 
       <p className="login-footer">
