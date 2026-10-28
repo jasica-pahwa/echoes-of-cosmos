@@ -2,6 +2,8 @@ import {Link} from 'react-router-dom'
 import FloatingDecor from '../components/FloatingDecor.jsx'
 import StickyNote from '../components/StickyNote.jsx'
 import ComingSoon from '../components/ComingSoon.jsx'
+import FAQSection from '../components/FAQSection.jsx'
+import ReviewSection from '../components/ReviewSection.jsx'
 import facts from '../data/facts.js'
 
 const headline= 'Blast off into wonders of space!'
@@ -75,8 +77,9 @@ export default function Home() {
         </div>
       </section>
 
+      <ReviewSection />
+      <FAQSection />
       <ComingSoon />
     </main>
   )
 }
-
