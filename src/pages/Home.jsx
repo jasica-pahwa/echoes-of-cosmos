@@ -5,6 +5,7 @@ import ComingSoon from '../components/ComingSoon.jsx'
 import FAQSection from '../components/FAQSection.jsx'
 import ReviewSection from '../components/ReviewSection.jsx'
 import facts from '../data/facts.js'
+import SpaceMissionGenerator from '../components/SpaceMissionGenerator.jsx'
 
 const headline= 'Blast off into wonders of space!'
 const previewFacts=facts.slice(0,3)
@@ -77,9 +78,12 @@ export default function Home() {
         </div>
       </section>
 
+      <SpaceMissionGenerator />
       <ReviewSection />
       <FAQSection />
       <ComingSoon />
     </main>
   )
 }
+
+
