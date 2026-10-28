@@ -1,0 +1,401 @@
+
+.build-rocket-page {
+  min-height: 80vh;
+  padding: 48px 6%;
+  color: #f4f2ff;
+  background:
+    radial-gradient(ellipse at top, #25245e 0%, transparent 55%),
+    linear-gradient(145deg, #080d24, #111633 65%, #080d24);
+}
+
+.rocket-heading {
+  max-width: 720px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.rocket-eyebrow {
+  color: #a9b4ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.rocket-heading h1 {
+  margin: 10px 0;
+  font-size: clamp(32px, 5vw, 48px);
+}
+
+.rocket-heading > p:last-child {
+  color: #c5c9e6;
+  line-height: 1.7;
+}
+
+.rocket-workshop {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.parts-panel,
+.assembly-panel {
+  padding: 24px;
+  border: 1px solid rgba(183, 190, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(20, 26, 61, 0.82);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.2);
+}
+
+.parts-panel h2,
+.assembly-panel h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.panel-hint {
+  color: #b7bddc;
+  font-size: 13px;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.part-card {
+  display: flex;
+  min-height: 105px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border: 1px solid rgba(183, 190, 255, 0.2);
+  border-radius: 14px;
+  background: rgba(49, 57, 108, 0.5);
+  color: #f4f2ff;
+  font-size: 12px;
+  text-align: center;
+  cursor: grab;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.part-card:hover {
+  transform: translateY(-3px);
+  border-color: #9ba9ff;
+  background: rgba(77, 86, 151, 0.5);
+}
+
+.part-card:active {
+  cursor: grabbing;
+}
+
+.part-symbol {
+  font-size: 27px;
+}
+
+.assembly-slots {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.assembly-slot {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed #737da9;
+  border-radius: 14px;
+  background: rgba(8, 13, 36, 0.45);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.assembly-slot:has(.empty-slot) {
+  border-color: #7c87c5;
+}
+
+.slot-label {
+  color: #b9c3ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.empty-slot {
+  color: #858eaf;
+  font-size: 12px;
+}
+
+.slot-filled {
+  border-style: solid;
+  border-color: #79e7d0;
+  background: rgba(36, 120, 111, 0.15);
+}
+
+.installed-part {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.installed-part > span:first-child {
+  font-size: 20px;
+}
+
+.remove-part {
+  border: 0;
+  background: transparent;
+  color: #ffb9c6;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.rocket-progress {
+  height: 7px;
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #30385f;
+}
+
+.rocket-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #9b8cff, #70ead2);
+  transition: width 0.3s ease;
+}
+
+.rocket-message {
+  min-height: 24px;
+  margin: 18px 0;
+  color: #d3d7f4;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rocket-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.launch-button,
+.reset-button {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.launch-button {
+  border: 0;
+  background: linear-gradient(110deg, #a99aff, #77dfd4);
+  color: #10152d;
+}
+
+.launch-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.reset-button {
+  border: 1px solid #737da9;
+  background: transparent;
+  color: #f4f2ff;
+}
+
+.mission-ready {
+  margin: 28px auto 0;
+  color: #87f0d9;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .rocket-workshop {
+    grid-template-columns: 1fr;
+  }
+
+  .build-rocket-page {
+    padding: 32px 16px;
+  }
+
+  .parts-panel,
+  .assembly-panel {
+    padding: 18px;
+  }
+
+  .assembly-slot {
+    flex-wrap: wrap;
+  }
+
+  .installed-part {
+    flex-wrap: wrap;
+  }
+}
+
+/* Rocket preview area */
+.rocket-preview {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  margin: 20px 0;
+  border: 1px solid rgba(169, 154, 255, 0.25);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 25%, #ffffff 1px, transparent 2px),
+    radial-gradient(circle at 75% 35%, #b9c7ff 1px, transparent 2px),
+    radial-gradient(circle at 65% 75%, #ffffff 1px, transparent 2px),
+    #0b1230;
+  background-size: 75px 75px, 110px 110px, 90px 90px, auto;
+}
+
+.rocket-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  transition: transform 1.5s ease-in;
+}
+
+.rocket-nose {
+  width: 0;
+  height: 0;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 65px solid #a99aff;
+}
+
+.nose-rounded {
+  border-radius: 50% 50% 0 0;
+}
+
+.rocket-body {
+  position: relative;
+  width: 70px;
+  height: 120px;
+  border: 3px solid #d9ddff;
+  border-radius: 14px 14px 8px 8px;
+  background: linear-gradient(90deg, #777ed0, #d8d5ff, #777ed0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+
+.body-slim {
+  width: 52px;
+}
+
+.body-wide {
+  width: 88px;
+}
+
+.rocket-window {
+  width: 23px;
+  height: 23px;
+  border: 4px solid #f0f3ff;
+  border-radius: 50%;
+  background: #47cde2;
+  box-shadow: 0 0 12px #47cde2;
+}
+
+.second-window {
+  width: 15px;
+  height: 15px;
+}
+
+.rocket-fins {
+  position: absolute;
+  top: 135px;
+  width: 100px;
+  height: 55px;
+  z-index: 1;
+}
+
+.rocket-fin {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 55px;
+  background: #ff8d9f;
+  border: 2px solid #ffd3dc;
+}
+
+.left-fin {
+  left: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 25% 35%);
+}
+
+.right-fin {
+  right: 0;
+  clip-path: polygon(0 0, 75% 35%, 100% 100%, 0 100%);
+}
+
+.fins-small .rocket-fin {
+  width: 20px;
+  height: 35px;
+}
+
+.rocket-engine {
+  display: flex;
+  gap: 5px;
+  padding: 0 10px;
+  height: 20px;
+  background: #8a91b8;
+  border-radius: 0 0 7px 7px;
+  z-index: 3;
+}
+
+.rocket-engine span {
+  display: block;
+  width: 13px;
+  height: 16px;
+  background: #313751;
+  border-radius: 0 0 5px 5px;
+}
+
+.rocket-flames {
+  font-size: 36px;
+  margin-top: 8px;
+  animation: flame-flicker 0.25s infinite alternate;
+}
+.rocket-launched {
+  transform: translateY(-350px);
+}
+
+
+@keyframes flame-flicker {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.15); }
+}
+.rocket-preview {
+  min-height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.rocket-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  transition: transform 1.5s ease-in;
+}
