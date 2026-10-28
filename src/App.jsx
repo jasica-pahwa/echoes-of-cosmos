@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+
+import { Navigate, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -13,18 +14,15 @@ export default function App() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/trivia" element={<Trivia />} />
-        <Route path="/planets" element={<PlanetExplorer />} />
-        <Route path="/planets/:planetName" element={<PlanetDetails />} />
-        <Route path="/build-rocket" element={<BuildRocket />} />
-      </Routes>
+ <Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/trivia" element={<Trivia />} />
+  <Route path="/planets" element={<PlanetExplorer />} />
+  <Route path="/planets/:planetName" element={<PlanetDetails />} />
+  <Route path="/build-rocket" element={<BuildRocket />} />
+</Routes>
       <Footer />
     </div>
   )
 }
-
-
-
