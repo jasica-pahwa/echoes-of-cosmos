@@ -37,7 +37,7 @@ function Login() {
     login(email.trim(), password)
       .then((result) => {
         if (result.success) {
-          navigate('/home')
+         navigate('/home', { replace: true })
         }
       })
       .catch(() => {

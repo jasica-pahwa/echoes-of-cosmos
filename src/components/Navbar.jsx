@@ -42,6 +42,7 @@ export default function Navbar() {
           <NavLink to="/build-rocket" style={linkStyle}>
   Build a Rocket
 </NavLink>
+
           <ThemeToggle />
         </div>
       </nav>

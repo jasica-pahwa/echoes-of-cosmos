@@ -19,6 +19,15 @@ function ProtectedLayout() {
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       <Navbar />
       <Outlet />
+ <Routes>
+  <Route path="/" element={<Navigate to="/login" replace />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/home" element={<Home />} />
+  <Route path="/trivia" element={<Trivia />} />
+  <Route path="/planets" element={<PlanetExplorer />} />
+  <Route path="/planets/:planetName" element={<PlanetDetails />} />
+  <Route path="/build-rocket" element={<BuildRocket />} />
+</Routes>
       <Footer />
     </div>
   )
