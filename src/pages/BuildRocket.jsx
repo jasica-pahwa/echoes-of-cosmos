@@ -1,5 +1,11 @@
 
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addPart,
+  removePart,
+  resetRocket as resetRocketState,
+} from '../redux/RocketSlice.js'
 import './BuildRocket.css'
 
 const parts = [
@@ -21,8 +27,12 @@ const slots = [
 ]
 
 export default function BuildRocket() {
-  const [rocket, setRocket] = useState({})
-  const [message, setMessage] = useState('Drag each part into its matching slot!')
+  const rocket = useSelector((state) => state.rocket.parts)
+  const dispatch = useDispatch()
+
+  const [message, setMessage] = useState(
+    'Drag each part into its matching slot!'
+  )
   const [launching, setLaunching] = useState(false)
 
   function handleDragStart(event, part) {
@@ -46,22 +56,30 @@ export default function BuildRocket() {
       return
     }
 
-    setRocket((previousRocket) => ({
-      ...previousRocket,
-      [slotType]: part,
-    }))
-
+    dispatch(addPart(part))
     setLaunching(false)
     setMessage(`${part.name} attached successfully!`)
   }
 
   function resetRocket() {
-    setRocket({})
+    dispatch(resetRocketState())
     setLaunching(false)
     setMessage('Your rocket is ready to be built again!')
   }
 
-  const complete = slots.every((slot) => rocket[slot.type])
+  function handleRemovePart(slotType) {
+    dispatch(removePart(slotType))
+    setLaunching(false)
+    setMessage('Part removed. Choose another component!')
+  }
+
+  const installedCount = slots.filter(
+    (slot) => rocket[slot.type]
+  ).length
+
+  const complete = slots.every(
+    (slot) => rocket[slot.type]
+  )
 
   function launchRocket() {
     if (!complete) return
@@ -84,7 +102,9 @@ export default function BuildRocket() {
       <section className="rocket-workshop">
         <div className="parts-panel">
           <h2>Rocket Parts</h2>
-          <p className="panel-hint">Drag a piece to its matching slot.</p>
+          <p className="panel-hint">
+            Drag a piece to its matching slot.
+          </p>
 
           <div className="parts-grid">
             {parts.map((part) => (
@@ -92,7 +112,9 @@ export default function BuildRocket() {
                 key={part.id}
                 className="part-card"
                 draggable
-                onDragStart={(event) => handleDragStart(event, part)}
+                onDragStart={(event) =>
+                  handleDragStart(event, part)
+                }
               >
                 <span className="part-symbol">{part.symbol}</span>
                 <span>{part.name}</span>
@@ -103,74 +125,102 @@ export default function BuildRocket() {
 
         <div className="assembly-panel">
           <h2>Assembly Station</h2>
+
           <p className="panel-hint">
-            {slots.filter((slot) => rocket[slot.type]).length} of 4 parts installed
+            {installedCount} of 4 parts installed
           </p>
-<div className="rocket-preview">
-  <div className={`rocket-art ${launching ? 'rocket-launched' : ''}`}>
-    {rocket.nose && (
-      <div
-        className={`rocket-nose ${rocket.nose.id === 'nose-round' ? 'nose-rounded' : 'nose-pointed'}`}
-      />
-    )}
 
-    {rocket.fins && (
-      <div className={`rocket-fins ${rocket.fins.id === 'fins-large' ? 'fins-large' : 'fins-small'}`}>
-        <span className="rocket-fin left-fin" />
-        <span className="rocket-fin right-fin" />
-      </div>
-    )}
+          <div className="rocket-preview">
+            <div
+              className={`rocket-art ${
+                launching ? 'rocket-launched' : ''
+              }`}
+            >
+              {rocket.nose && (
+                <div
+                  className={`rocket-nose ${
+                    rocket.nose.id === 'nose-round'
+                      ? 'nose-rounded'
+                      : 'nose-pointed'
+                  }`}
+                />
+              )}
 
-    {rocket.body && (
-      <div className={`rocket-body ${rocket.body.id === 'body-wide' ? 'body-wide' : 'body-slim'}`}>
-        <span className="rocket-window" />
-        <span className="rocket-window second-window" />
-      </div>
-    )}
+              {rocket.fins && (
+                <div
+                  className={`rocket-fins ${
+                    rocket.fins.id === 'fins-large'
+                      ? 'fins-large'
+                      : 'fins-small'
+                  }`}
+                >
+                  <span className="rocket-fin left-fin" />
+                  <span className="rocket-fin right-fin" />
+                </div>
+              )}
 
-    {rocket.engine && (
-      <div className="rocket-engine">
-        <span />
-        {rocket.engine.id === 'engine-double' && <span />}
-      </div>
-    )}
+              {rocket.body && (
+                <div
+                  className={`rocket-body ${
+                    rocket.body.id === 'body-wide'
+                      ? 'body-wide'
+                      : 'body-slim'
+                  }`}
+                >
+                  <span className="rocket-window" />
+                  <span className="rocket-window second-window" />
+                </div>
+              )}
 
-    {launching && <div className="rocket-flames">🔥</div>}
-  </div>
-</div>
+              {rocket.engine && (
+                <div className="rocket-engine">
+                  <span />
+                  {rocket.engine.id === 'engine-double' && (
+                    <span />
+                  )}
+                </div>
+              )}
 
+              {launching && (
+                <div className="rocket-flames">🔥</div>
+              )}
+            </div>
+          </div>
 
           <div className="assembly-slots">
             {slots.map((slot) => (
               <div
                 key={slot.type}
-                className={`assembly-slot ${rocket[slot.type] ? 'slot-filled' : ''}`}
+                className={`assembly-slot ${
+                  rocket[slot.type] ? 'slot-filled' : ''
+                }`}
                 onDragOver={handleDragOver}
-                onDrop={(event) => handleDrop(event, slot.type)}
+                onDrop={(event) =>
+                  handleDrop(event, slot.type)
+                }
               >
-                <span className="slot-label">{slot.label}</span>
+                <span className="slot-label">
+                  {slot.label}
+                </span>
 
                 {rocket[slot.type] ? (
                   <div className="installed-part">
                     <span>{rocket[slot.type].symbol}</span>
                     <span>{rocket[slot.type].name}</span>
+
                     <button
                       className="remove-part"
-                      onClick={() => {
-                        setRocket((previousRocket) => {
-                          const updatedRocket = { ...previousRocket }
-                          delete updatedRocket[slot.type]
-                          return updatedRocket
-                        })
-                        setLaunching(false)
-                        setMessage('Part removed. Choose another component!')
-                      }}
+                      onClick={() =>
+                        handleRemovePart(slot.type)
+                      }
                     >
                       Remove
                     </button>
                   </div>
                 ) : (
-                  <span className="empty-slot">Drop part here</span>
+                  <span className="empty-slot">
+                    Drop part here
+                  </span>
                 )}
               </div>
             ))}
@@ -180,12 +230,14 @@ export default function BuildRocket() {
             <div
               className="rocket-progress-fill"
               style={{
-                width: `${(slots.filter((slot) => rocket[slot.type]).length / 4) * 100}%`,
+                width: `${(installedCount / 4) * 100}%`,
               }}
             />
           </div>
 
-          <p className="rocket-message" aria-live="polite">{message}</p>
+          <p className="rocket-message" aria-live="polite">
+            {message}
+          </p>
 
           <div className="rocket-actions">
             <button
@@ -196,7 +248,10 @@ export default function BuildRocket() {
               {launching ? '🚀 Launched!' : '🚀 Launch Mission'}
             </button>
 
-            <button className="reset-button" onClick={resetRocket}>
+            <button
+              className="reset-button"
+              onClick={resetRocket}
+            >
               Reset
             </button>
           </div>
@@ -211,4 +266,3 @@ export default function BuildRocket() {
     </main>
   )
 }
-

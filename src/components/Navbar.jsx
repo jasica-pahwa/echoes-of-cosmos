@@ -1,13 +1,15 @@
+
 import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle.jsx'
-
 
 const linkStyle = ({ isActive }) => ({
   fontWeight: 700,
   fontSize: '15px',
   color: isActive ? 'var(--ion)' : 'var(--slate)',
   padding: '8px 4px',
-  borderBottom: isActive ? '2px solid var(--ion)' : '2px solid transparent',
+  borderBottom: isActive
+    ? '2px solid var(--ion)'
+    : '2px solid transparent',
 })
 
 export default function Navbar() {
@@ -31,16 +33,39 @@ export default function Navbar() {
           height: 68,
         }}
       >
-        <NavLink to="/home" style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700 }}>
+        <NavLink
+          to="/home"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 20,
+            fontWeight: 700,
+          }}
+        >
           🪐 Echoes of Cosmos
         </NavLink>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <NavLink to="/home" style={linkStyle} end>Home</NavLink>
-          <NavLink to="/trivia" style={linkStyle}>Trivia</NavLink>
-          <NavLink to="/planets" style={linkStyle}>Planets Exploration</NavLink>
+
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 24,
+          }}
+        >
+          <NavLink to="/home" style={linkStyle} end>
+            Home
+          </NavLink>
+
+          <NavLink to="/trivia" style={linkStyle}>
+            Trivia
+          </NavLink>
+
+          <NavLink to="/planets" style={linkStyle}>
+            Planets Exploration
+          </NavLink>
+
           <NavLink to="/build-rocket" style={linkStyle}>
-  Build a Rocket
-</NavLink>
+            Build a Rocket
+          </NavLink>
 
           <ThemeToggle />
         </div>
